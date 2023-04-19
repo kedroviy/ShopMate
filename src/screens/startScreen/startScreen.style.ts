@@ -9,12 +9,14 @@ export default StyleSheet.create({
     alignItems: 'center',
   },
   button: {
+    elevation: 3,
     top: '65%',
     alignItems: 'center',
     justifyContent: 'center',
     width: '45%',
     height: 44,
     backgroundColor: COLOR.simpleOrange,
+    borderRadius: 3,
   },
   text: {
     color: COLOR.white,
