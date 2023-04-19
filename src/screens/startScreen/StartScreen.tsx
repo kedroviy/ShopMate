@@ -1,10 +1,14 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Text, View, TouchableOpacity} from 'react-native';
+
+import style from './startScreen.style.ts';
 
 const StartScreen: React.FC = () => {
   return (
-    <View>
-      <Text>Hello</Text>
+    <View style={style.container}>
+      <TouchableOpacity style={style.button}>
+        <Text style={style.text}>start</Text>
+      </TouchableOpacity>
     </View>
   );
 };

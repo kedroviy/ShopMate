@@ -1,13 +1,14 @@
-import React from 'react';
-import {SafeAreaView} from 'react-native';
+import 'react-native-gesture-handler';
+import * as React from 'react';
+import {NavigationContainer} from '@react-navigation/native';
 
 import {StartScreen} from '@screens';
 
 function App(): JSX.Element {
   return (
-    <SafeAreaView>
+    <NavigationContainer>
       <StartScreen />
-    </SafeAreaView>
+    </NavigationContainer>
   );
 }
 
