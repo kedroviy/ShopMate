@@ -3,6 +3,8 @@
   "baseUrl": ".",
   "paths": {
     "*": ["src/*"],
-    "@screens/*": ["src/screens/index.ts"]
+    "@screens/*": ["src/screens/index.ts"],
+    "@navigation/*": ["src/core/navigation/index.ts"],
+    "@config": ["src/config/index.ts"]
   }
 }
