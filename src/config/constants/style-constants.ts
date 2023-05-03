@@ -10,6 +10,7 @@ const COLOR = {
   platinum: '#D7DEDC',
   mountbattenPink: '#9A879D',
   eggplant: '#563440',
+  moonstone: '#69A7AE',
 };
 
 export {COLOR};

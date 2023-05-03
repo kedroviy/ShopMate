@@ -17,8 +17,8 @@ const AnimateInput: React.FC = ({
   value,
   onChangeText,
 }) => {
-  const [isFocusInput, setIsFocusInput] = useState(false);
-  const [inputValue, setInputValue] = useState();
+  const [isFocusInput, setIsFocusInput] = useState<boolean>(false);
+  const [inputValue, setInputValue] = useState<string | undefined>('');
   const inputItem = useRef(null);
 
   const offset = useSharedValue(0);
@@ -46,9 +46,9 @@ const AnimateInput: React.FC = ({
 
   const handleOnBlur = useCallback(() => {
     if (!inputValue) {
-      setIsFocusInput(false);
+      setIsFocusInput(!isFocusInput);
     }
-  }, [inputValue]);
+  }, [inputValue, isFocusInput]);
 
   useEffect(() => {
     if (isFocusInput) {
