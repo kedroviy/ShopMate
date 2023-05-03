@@ -4,23 +4,24 @@ import {COLOR} from '@config';
 
 export default StyleSheet.create({
   container: {
-    width: 180,
-    height: 180,
-    backgroundColor: COLOR.peachYellow,
+    width: '80%',
+    height: 480,
+    backgroundColor: COLOR.timberWolf,
     borderRadius: 5,
     alignItems: 'center',
     margin: 5,
   },
-  card: {
-    width: '100%',
-    height: '100%',
-    elevation: 3,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   text: {
-    color: COLOR.white,
+    color: COLOR.black,
     textTransform: 'uppercase',
     letterSpacing: 5,
+  },
+  buttonBack: {
+    width: 40,
+    height: 40,
+  },
+  arrowBackIcon: {
+    width: '90%',
+    height: '90%',
   },
 });
