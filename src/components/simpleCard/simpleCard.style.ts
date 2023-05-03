@@ -10,6 +10,10 @@ export default StyleSheet.create({
     borderRadius: 5,
     alignItems: 'center',
     margin: 5,
+    shadowColor: '#000',
+    shadowOpacity: 0.27,
+    shadowRadius: 4.65,
+    elevation: 3,
   },
   card: {
     width: '100%',
