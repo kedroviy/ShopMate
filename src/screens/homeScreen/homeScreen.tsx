@@ -7,6 +7,7 @@ import {
   Text,
   Modal,
 } from 'react-native';
+import {useSelector} from 'react-redux';
 import {openDatabase} from 'react-native-sqlite-storage';
 
 import {SimpleCard, CreateListModal} from '@components';
@@ -20,6 +21,7 @@ const db = openDatabase({
 const HomeScreen: React.FC = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [listsFromDB, setListsFromDB] = useState([]);
+  const list = useSelector(state => state.listReducer);
 
   const getLists = () => {
     db.transaction(txn => {
@@ -48,11 +50,11 @@ const HomeScreen: React.FC = () => {
   };
 
   useEffect(() => {
-    console.log(listsFromDB);
+    console.log(list);
     listsFromDB.length
       ? listsFromDB.map(item => console.log(item))
       : getLists();
-  }, [listsFromDB]);
+  }, [list, listsFromDB]);
 
   return (
     <View style={style.container}>
