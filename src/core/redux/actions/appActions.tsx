@@ -1,4 +1,4 @@
-import {ADD_LIST_IN_STORE, GET_LIST} from '../TYPES.js';
+import {ADD_LIST_IN_STORE, GET_LIST} from '../TYPES.ts';
 
 export function addListInSore({id, name}) {
   return {

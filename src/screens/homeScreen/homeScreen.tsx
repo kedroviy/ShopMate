@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useCallback} from 'react';
 import {
   View,
   ScrollView,
@@ -7,9 +7,10 @@ import {
   Text,
   Modal,
 } from 'react-native';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {openDatabase} from 'react-native-sqlite-storage';
 
+import {addListInSore} from '../../core/redux/actions/appActions';
 import {SimpleCard, CreateListModal} from '@components';
 
 import style from './homeScreen.style.ts';
@@ -19,9 +20,10 @@ const db = openDatabase({
 });
 
 const HomeScreen: React.FC = () => {
+  const dispatch = useDispatch();
+  const list = useSelector(state => state.listReducer);
   const [modalVisible, setModalVisible] = useState(false);
   const [listsFromDB, setListsFromDB] = useState([]);
-  const list = useSelector(state => state.listReducer);
 
   const getLists = () => {
     db.transaction(txn => {
@@ -49,11 +51,16 @@ const HomeScreen: React.FC = () => {
     });
   };
 
+  const setListItemInStore = useCallback(
+    item => {
+      dispatch(addListInSore({...item}));
+    },
+    [dispatch],
+  );
+
   useEffect(() => {
     console.log(list);
-    listsFromDB.length
-      ? listsFromDB.map(item => console.log(item))
-      : getLists();
+    listsFromDB.length ? null : getLists();
   }, [list, listsFromDB]);
 
   return (
@@ -68,7 +75,13 @@ const HomeScreen: React.FC = () => {
         <>
           <ScrollView contentContainerStyle={style.scroll}>
             {listsFromDB.length ? (
-              listsFromDB.map(item => <SimpleCard key={item.id} {...item} />)
+              listsFromDB.map(item => (
+                <SimpleCard
+                  key={item.id}
+                  {...item}
+                  handlePress={() => setListItemInStore({...item})}
+                />
+              ))
             ) : (
               <Text>No Lists Yet</Text>
             )}
