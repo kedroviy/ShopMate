@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import {useSelector, useDispatch} from 'react-redux';
 import {openDatabase} from 'react-native-sqlite-storage';
+import {useNavigation} from '@react-navigation/native';
 
 import {addListInSore} from '../../core/redux/actions/appActions';
 import {SimpleCard, CreateListModal} from '@components';
@@ -22,6 +23,7 @@ const db = openDatabase({
 const HomeScreen: React.FC = () => {
   const dispatch = useDispatch();
   const list = useSelector(state => state.listReducer);
+  const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
   const [listsFromDB, setListsFromDB] = useState([]);
 
@@ -54,8 +56,9 @@ const HomeScreen: React.FC = () => {
   const setListItemInStore = useCallback(
     item => {
       dispatch(addListInSore({...item}));
+      navigation.navigate('Current Screen');
     },
-    [dispatch],
+    [dispatch, navigation],
   );
 
   useEffect(() => {
