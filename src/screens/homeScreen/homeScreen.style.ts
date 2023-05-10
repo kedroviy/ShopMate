@@ -14,14 +14,13 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
-    height: '70%',
+    height: '64%',
     padding: 0,
   },
   modalForm: {
     left: 30,
   },
   scroll: {
-    top: 100,
     width: '100%',
     flexDirection: 'row',
     flexWrap: 'wrap',

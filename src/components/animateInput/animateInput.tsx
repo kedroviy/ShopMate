@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import React, {useCallback, useEffect, useState, useRef} from 'react';
 import PropTypes from 'prop-types';
 import {TextInput, Text, TouchableOpacity, View} from 'react-native';
@@ -23,24 +22,16 @@ const AnimateInput: React.FC = ({
 
   const offset = useSharedValue(0);
 
-  const animatedStyle = useCallback(
-    (numDuration, numDelay) =>
-      useAnimatedStyle(() => ({
-        transform: [
-          {
-            translateY: withDelay(
-              numDelay,
-              withRepeat(
-                withTiming(offset.value, {duration: numDuration}),
-                1,
-                true,
-              ),
-            ),
-          },
-        ],
-      })),
-    [offset.value],
-  );
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [
+      {
+        translateY: withDelay(
+          50,
+          withRepeat(withTiming(offset.value, {duration: 200}), 1, true),
+        ),
+      },
+    ],
+  }));
 
   const handlerOnFocus = useCallback(() => setIsFocusInput(true), []);
 
@@ -68,7 +59,7 @@ const AnimateInput: React.FC = ({
         onBlur={() => handleOnBlur()}
         ref={inputItem}
       />
-      <Animated.View style={[style.animatePalceholder, animatedStyle(200, 50)]}>
+      <Animated.View style={[style.animatePalceholder, animatedStyle]}>
         <TouchableOpacity
           style={style.touch}
           activeOpacity={1}

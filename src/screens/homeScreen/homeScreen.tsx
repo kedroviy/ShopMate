@@ -13,33 +13,47 @@ import {SimpleCard, CreateListModal} from '@components';
 
 import style from './homeScreen.style.ts';
 
-const db = openDatabase(
-  {
-    name: 'ShopMateDB',
-    location: 'default',
-  },
-  () => {},
-  error => {
-    console.log(error);
-  },
-);
+const db = openDatabase({
+  name: 'shop_mate_db',
+});
 
 const HomeScreen: React.FC = () => {
   const [modalVisible, setModalVisible] = useState(false);
+  const [listsFromDB, setListsFromDB] = useState([]);
 
-  useEffect(() => {
-    createTable();
-  }, []);
+  const getLists = () => {
+    db.transaction(txn => {
+      txn.executeSql(
+        'SELECT * FROM lists ORDER BY id DESC',
+        [],
+        (sqlTxn, res) => {
+          console.log('lists retrieved successfully');
+          let len = res.rows.length;
 
-  const createTable = () => {
-    db.transaction(tx => {
-      tx.executeSql(
-        'CREATE TABLE IF NOT EXIST ' +
-          'User ' +
-          '(ID INTEGER PRIMARY KEY AUTOINCREMENT, Name TEXT);',
+          if (len > 0) {
+            let results = [];
+            for (let i = 0; i < len; i++) {
+              let item = res.rows.item(i);
+              results.push({id: item.id, name: item.name});
+            }
+
+            setListsFromDB(results);
+          }
+        },
+        error => {
+          console.log('error on getting lists ' + error.message);
+        },
       );
     });
   };
+
+  useEffect(() => {
+    console.log(listsFromDB);
+    listsFromDB.length
+      ? listsFromDB.map(item => console.log(item))
+      : getLists();
+  }, [listsFromDB]);
+
   return (
     <View style={style.container}>
       <SafeAreaView style={style.mainContainer}>
@@ -51,8 +65,11 @@ const HomeScreen: React.FC = () => {
         </Modal>
         <>
           <ScrollView contentContainerStyle={style.scroll}>
-            <SimpleCard />
-            <SimpleCard />
+            {listsFromDB.length ? (
+              listsFromDB.map(item => <SimpleCard key={item.id} {...item} />)
+            ) : (
+              <Text>No Lists Yet</Text>
+            )}
           </ScrollView>
           <TouchableOpacity
             style={style.button}
