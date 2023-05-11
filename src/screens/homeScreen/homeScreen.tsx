@@ -68,6 +68,14 @@ const HomeScreen: React.FC = () => {
 
   return (
     <View style={style.container}>
+      <View style={style.header}>
+        <View style={style.loginName}>
+          <Text>login-name</Text>
+        </View>
+        <View style={style.avatar}>
+          <Text>avatar</Text>
+        </View>
+      </View>
       <SafeAreaView style={style.mainContainer}>
         <Modal
           style={style.modalForm}
