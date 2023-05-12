@@ -45,9 +45,13 @@ export default StyleSheet.create({
     justifyContent: 'center',
     width: 60,
     height: 40,
-    backgroundColor: COLOR.platinum,
+    backgroundColor: COLOR.tiffanyBlue,
     borderRadius: 5,
     marginLeft: 10,
+  },
+  addButtonText: {
+    color: COLOR.white,
+    textTransform: 'uppercase',
   },
   text: {
     color: COLOR.white,

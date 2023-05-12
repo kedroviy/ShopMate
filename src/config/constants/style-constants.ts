@@ -14,6 +14,9 @@ const COLOR = {
   moonstone: '#69A7AE',
   royalBlue: '#496DDB',
   savoyBlue: '#3B61D3',
+  sandyBrown: '#F1A164',
+  indianRed: '#C95D63',
+  tiffanyBlue: '#3E517A',
 };
 
 export {COLOR};

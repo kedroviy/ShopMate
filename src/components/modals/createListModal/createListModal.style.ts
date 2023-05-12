@@ -46,9 +46,8 @@ export default StyleSheet.create({
     top: 120,
     width: 50,
     height: 50,
-    backgroundColor: COLOR.moonstone,
+    backgroundColor: COLOR.royalBlue,
     borderRadius: 25,
-    borderWidth: 1,
   },
   applyButton: {
     alignItems: 'center',

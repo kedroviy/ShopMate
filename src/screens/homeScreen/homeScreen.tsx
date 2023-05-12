@@ -60,6 +60,13 @@ const HomeScreen: React.FC = () => {
     [dispatch, navigation],
   );
 
+  const onDeleteListItemFromStore = item => {
+    db.transaction(txn => {
+      txn.executeSql(`DELETE FROM lists WHERE id=${item.id}`, []);
+    });
+    getLists();
+  };
+
   useEffect(() => {
     listsFromDB.length ? null : getLists();
   }, [listsFromDB]);
@@ -89,6 +96,7 @@ const HomeScreen: React.FC = () => {
                   key={item.id}
                   {...item}
                   handlePress={() => setListItemInStore({...item})}
+                  deletePress={() => onDeleteListItemFromStore({...item})}
                 />
               ))
             ) : (

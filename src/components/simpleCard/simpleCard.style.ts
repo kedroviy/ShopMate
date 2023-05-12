@@ -6,7 +6,7 @@ export default StyleSheet.create({
   container: {
     width: 180,
     height: 180,
-    backgroundColor: COLOR.peachYellow,
+    backgroundColor: COLOR.sandyBrown,
     borderRadius: 5,
     alignItems: 'center',
     margin: 5,
@@ -15,9 +15,14 @@ export default StyleSheet.create({
     shadowRadius: 4.65,
     elevation: 3,
   },
-  card: {
-    width: '100%',
-    height: '100%',
+  controls: {
+    width: '90%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  button: {
+    width: 40,
+    height: 40,
     elevation: 3,
     alignItems: 'center',
     justifyContent: 'center',

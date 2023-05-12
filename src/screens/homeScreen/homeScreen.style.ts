@@ -49,7 +49,7 @@ export default StyleSheet.create({
     justifyContent: 'center',
     width: 200,
     height: 40,
-    backgroundColor: COLOR.darkSlateGray,
+    backgroundColor: COLOR.savoyBlue,
     borderRadius: 5,
   },
   text: {

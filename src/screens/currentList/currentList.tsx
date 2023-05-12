@@ -15,6 +15,7 @@ const CurrentList: React.FC = () => {
   const setObjectFromString = (string: string, array: Array) => {
     let id = array.length;
     setListArray([...listArray, {id, listItem: string}]);
+    setListItemInput(null);
   };
 
   useEffect(() => {
@@ -43,7 +44,7 @@ const CurrentList: React.FC = () => {
               ? setObjectFromString(listItemInput, listArray)
               : null
           }>
-          <Text>add</Text>
+          <Text style={style.addButtonText}>add</Text>
         </TouchableOpacity>
       </View>
       <View style={style.fakeShadowContainer}>
