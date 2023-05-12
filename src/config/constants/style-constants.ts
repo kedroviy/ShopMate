@@ -11,6 +11,8 @@ const COLOR = {
   mountbattenPink: '#9A879D',
   eggplant: '#563440',
   moonstone: '#69A7AE',
+  royalBlue: '#496DDB',
+  savoyBlue: '#3B61D3',
 };
 
 export {COLOR};

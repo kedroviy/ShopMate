@@ -1,6 +1,7 @@
 import {GET_LIST, ADD_LIST_IN_STORE} from '../TYPES';
 
 const initialState = {
+  login: '',
   list: [],
 };
 

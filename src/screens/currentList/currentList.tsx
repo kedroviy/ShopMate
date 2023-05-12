@@ -1,14 +1,62 @@
-import React from 'react';
-import {Text, View, TouchableOpacity} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {Text, View, TouchableOpacity, FlatList} from 'react-native';
+import {useSelector} from 'react-redux';
+
+import {AnimateInput, ListRow} from '@components';
 
 import style from './currentList.style.ts';
 
 const CurrentList: React.FC = () => {
+  const list = useSelector(state => state.listReducer);
+  const [listHeaderTitle, setListHeaderTitle] = useState<Array>([]);
+  const [listItemInput, setListItemInput] = useState<string>('');
+  const [listArray, setListArray] = useState<Array>([]);
+
+  const setObjectFromString = (string: string, array: Array) => {
+    let id = array.length;
+    setListArray([...listArray, {id, listItem: string}]);
+  };
+
+  useEffect(() => {
+    console.log(listItemInput);
+    console.log(listArray);
+    list ? setListHeaderTitle(list.list) : null;
+  }, [list, listArray, listHeaderTitle, listItemInput]);
+
   return (
     <View style={style.container}>
-      <TouchableOpacity style={style.button}>
-        <Text style={style.text}>current list</Text>
-      </TouchableOpacity>
+      <View key={listHeaderTitle.id} style={style.header}>
+        <Text>{listHeaderTitle.id}</Text>
+        <Text>{listHeaderTitle.name}</Text>
+      </View>
+
+      <View style={style.formContainer}>
+        <AnimateInput
+          animatedPlaceholderTextValue={'list item'}
+          value={listItemInput}
+          onChangeText={setListItemInput}
+        />
+        <TouchableOpacity
+          style={style.addButton}
+          onPress={() =>
+            listItemInput.length
+              ? setObjectFromString(listItemInput, listArray)
+              : null
+          }>
+          <Text>add</Text>
+        </TouchableOpacity>
+      </View>
+      <View>
+        {listArray ? (
+          <FlatList
+            data={listArray}
+            renderItem={({item}) => <ListRow name={item.listItem} />}
+            keyExtractor={item => item.id}
+          />
+        ) : (
+          <Text>No Items</Text>
+        )}
+      </View>
     </View>
   );
 };

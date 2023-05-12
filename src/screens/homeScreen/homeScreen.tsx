@@ -7,7 +7,7 @@ import {
   Text,
   Modal,
 } from 'react-native';
-import {useSelector, useDispatch} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {openDatabase} from 'react-native-sqlite-storage';
 import {useNavigation} from '@react-navigation/native';
 
@@ -22,7 +22,6 @@ const db = openDatabase({
 
 const HomeScreen: React.FC = () => {
   const dispatch = useDispatch();
-  const list = useSelector(state => state.listReducer);
   const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
   const [listsFromDB, setListsFromDB] = useState([]);
@@ -62,9 +61,8 @@ const HomeScreen: React.FC = () => {
   );
 
   useEffect(() => {
-    console.log(list);
     listsFromDB.length ? null : getLists();
-  }, [list, listsFromDB]);
+  }, [listsFromDB]);
 
   return (
     <View style={style.container}>

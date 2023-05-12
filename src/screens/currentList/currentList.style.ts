@@ -10,28 +10,29 @@ export default StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: COLOR.white,
   },
-  mainContainer: {
+  formContainer: {
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
-    width: '100%',
-    height: '64%',
-    padding: 0,
   },
-  modalForm: {
-    left: 30,
+  header: {
+    width: '100%',
+    height: 50,
+    backgroundColor: COLOR.darkSlateGray,
   },
   scroll: {
     width: '100%',
     flexDirection: 'row',
     flexWrap: 'wrap',
   },
-  button: {
+  addButton: {
+    elevation: 3,
     alignItems: 'center',
     justifyContent: 'center',
-    width: 200,
+    width: 60,
     height: 40,
-    backgroundColor: COLOR.darkSlateGray,
+    backgroundColor: COLOR.platinum,
     borderRadius: 5,
+    marginLeft: 10,
   },
   text: {
     color: COLOR.white,
