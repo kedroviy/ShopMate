@@ -2,14 +2,20 @@ import React from 'react';
 import {Text, View, TouchableOpacity, Image} from 'react-native';
 import style from './listRow.style.ts';
 
-const ListRow: React.FC = ({id, name, handlePress}) => {
+const ListRow: React.FC = ({id, name, editPress, deletePress}) => {
   return (
     <View style={style.container}>
+      <TouchableOpacity style={style.buttonDelete} onPress={editPress}>
+        <Image
+          style={style.deleteIcon}
+          source={require('../../assets/edit.png')}
+        />
+      </TouchableOpacity>
       <View>
         <Text style={style.text}>{id}</Text>
         <Text style={style.text}>{name}</Text>
       </View>
-      <TouchableOpacity style={style.buttonDelete} onPress={handlePress}>
+      <TouchableOpacity style={style.buttonDelete} onPress={deletePress}>
         <Image
           style={style.deleteIcon}
           source={require('../../assets/delete.png')}
