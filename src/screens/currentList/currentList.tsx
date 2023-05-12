@@ -26,8 +26,8 @@ const CurrentList: React.FC = () => {
   return (
     <View style={style.container}>
       <View key={listHeaderTitle.id} style={style.header}>
-        <Text>{listHeaderTitle.id}</Text>
-        <Text>{listHeaderTitle.name}</Text>
+        <Text style={style.headerText}>{listHeaderTitle.id}</Text>
+        <Text style={style.headerText}>{listHeaderTitle.name}</Text>
       </View>
 
       <View style={style.formContainer}>
@@ -46,7 +46,10 @@ const CurrentList: React.FC = () => {
           <Text>add</Text>
         </TouchableOpacity>
       </View>
-      <View>
+      <View style={style.fakeShadowContainer}>
+        <View style={style.fakeShadow} />
+      </View>
+      <View style={style.listContainer}>
         {listArray ? (
           <FlatList
             data={listArray}

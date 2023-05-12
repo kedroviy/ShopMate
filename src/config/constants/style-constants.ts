@@ -5,6 +5,7 @@ const COLOR = {
   extraLightBlue: '#DEECED',
   coquelicot: '#F34213',
   peachYellow: '#F7DBA7',
+  orange: '#EE8434',
   darkSlateGray: '#395458',
   timberWolf: '#F0F0EB',
   platinum: '#D7DEDC',
