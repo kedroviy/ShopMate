@@ -18,9 +18,11 @@ const CurrentList: React.FC = () => {
     setListItemInput(null);
   };
 
+  const removeItem = item => {
+    setListArray(listArray.filter(listItem => listItem.id !== item));
+  };
+
   useEffect(() => {
-    console.log(listItemInput);
-    console.log(listArray);
     list ? setListHeaderTitle(list.list) : null;
   }, [list, listArray, listHeaderTitle, listItemInput]);
 
@@ -54,7 +56,12 @@ const CurrentList: React.FC = () => {
         {listArray ? (
           <FlatList
             data={listArray}
-            renderItem={({item}) => <ListRow name={item.listItem} />}
+            renderItem={({item}) => (
+              <ListRow
+                name={item.listItem}
+                deletePress={() => removeItem(item.id)}
+              />
+            )}
             keyExtractor={item => item.id}
           />
         ) : (
