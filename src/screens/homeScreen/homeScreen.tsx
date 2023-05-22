@@ -52,10 +52,6 @@ const HomeScreen: React.FC = () => {
     });
   };
 
-  const onOpenNewListModal = (boolean) => {
-    dispatch(openNewListWindow(boolean));
-  };
-
   const setListItemInStore = useCallback(
     item => {
       dispatch(addListInSore({...item}));
