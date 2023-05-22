@@ -35,8 +35,9 @@ const CreateListModal: React.FC = ({handlePress}) => {
           },
         );
       });
+      handlePress();
     },
-    [listNameInput],
+    [handlePress, listNameInput],
   );
 
   return (
@@ -57,7 +58,9 @@ const CreateListModal: React.FC = ({handlePress}) => {
       <View style={style.applyButtonContainer}>
         <TouchableOpacity
           style={style.applyButton}
-          onPress={() => addNewList(listNameInput)}>
+          onPress={() => {
+            addNewList(listNameInput);
+          }}>
           <Image
             style={style.arrowBackIcon}
             source={require('../../../assets/plus.png')}

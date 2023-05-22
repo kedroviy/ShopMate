@@ -52,6 +52,10 @@ const HomeScreen: React.FC = () => {
     });
   };
 
+  const onOpenNewListModal = (boolean) => {
+    dispatch(openNewListWindow(boolean));
+  };
+
   const setListItemInStore = useCallback(
     item => {
       dispatch(addListInSore({...item}));
@@ -68,6 +72,7 @@ const HomeScreen: React.FC = () => {
   };
 
   useEffect(() => {
+    console.log(listsFromDB);
     listsFromDB.length ? null : getLists();
   }, [listsFromDB]);
 

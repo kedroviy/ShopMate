@@ -19,6 +19,7 @@ const CurrentList: React.FC = () => {
   };
 
   const removeItem = item => {
+    console.log(item);
     setListArray(listArray.filter(listItem => listItem.id !== item));
   };
 
@@ -53,7 +54,7 @@ const CurrentList: React.FC = () => {
         <View style={style.fakeShadow} />
       </View>
       <View style={style.listContainer}>
-        {listArray ? (
+        {listArray.length ? (
           <FlatList
             data={listArray}
             renderItem={({item}) => (
