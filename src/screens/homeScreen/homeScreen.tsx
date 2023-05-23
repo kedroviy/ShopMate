@@ -63,13 +63,14 @@ const HomeScreen: React.FC = () => {
   const onDeleteListItemFromStore = item => {
     db.transaction(txn => {
       txn.executeSql(`DELETE FROM lists WHERE id=${item.id}`, []);
+      txn.executeSql(`DELETE FROM list WHERE list_id=${item.id}`, []);
     });
     getLists();
   };
 
   useEffect(() => {
-    console.log(listsFromDB);
-    listsFromDB.length ? null : getLists();
+    console.log('home', listsFromDB);
+    !listsFromDB.length ? getLists() : null;
   }, [listsFromDB]);
 
   return (

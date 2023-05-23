@@ -17,6 +17,7 @@ const COLOR = {
   sandyBrown: '#F1A164',
   indianRed: '#C95D63',
   tiffanyBlue: '#3E517A',
+  mint: '#21D19F',
 };
 
 export {COLOR};

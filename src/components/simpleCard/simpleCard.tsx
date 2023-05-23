@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, View, TouchableOpacity} from 'react-native';
 import style from './simpleCard.style.ts';
 
-const SimpleCard: React.FC = ({id, name, handlePress, deletePress}) => {
+const SimpleCard: React.FC = ({name, handlePress, deletePress}) => {
   return (
     <View style={style.container}>
       <View style={style.controls}>
@@ -13,7 +13,6 @@ const SimpleCard: React.FC = ({id, name, handlePress, deletePress}) => {
           <Text>delete</Text>
         </TouchableOpacity>
       </View>
-      <Text style={style.text}>{id}</Text>
       <Text style={style.text}>{name}</Text>
     </View>
   );

@@ -12,10 +12,14 @@ export default StyleSheet.create({
   },
   formContainer: {
     width: '105%',
+    alignItems: 'center',
+    justifyContent: 'center',
+    height: 55,
+  },
+  inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    height: 50,
   },
   listContainer: {
     width: '100%',
@@ -48,6 +52,16 @@ export default StyleSheet.create({
     backgroundColor: COLOR.tiffanyBlue,
     borderRadius: 5,
     marginLeft: 10,
+  },
+  saveButton: {
+    elevation: 3,
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 300,
+    height: 40,
+    backgroundColor: COLOR.mint,
+    borderRadius: 5,
+    marginRight: 25,
   },
   addButtonText: {
     color: COLOR.white,
