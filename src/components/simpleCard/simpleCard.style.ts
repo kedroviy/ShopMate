@@ -5,8 +5,8 @@ import {COLOR} from '@config';
 export default StyleSheet.create({
   container: {
     width: 180,
-    height: 180,
-    backgroundColor: COLOR.sandyBrown,
+    height: 80,
+    backgroundColor: COLOR.tiffanyBlue,
     borderRadius: 5,
     alignItems: 'center',
     margin: 5,
@@ -19,13 +19,18 @@ export default StyleSheet.create({
     width: '90%',
     flexDirection: 'row',
     justifyContent: 'space-between',
+    marginBottom: 10,
   },
   button: {
     width: 40,
     height: 40,
-    elevation: 3,
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop: 3,
+  },
+  deleteIcon: {
+    width: '60%',
+    height: '60%',
   },
   text: {
     color: COLOR.white,
