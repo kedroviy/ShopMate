@@ -7,7 +7,7 @@ const SimpleCard: React.FC = ({name, handlePress, deletePress}) => {
     <View style={style.container}>
       <View style={style.controls}>
         <TouchableOpacity style={style.button} onPress={handlePress}>
-          <Text>Open</Text>
+          <Text style={style.text}>Show</Text>
         </TouchableOpacity>
         <TouchableOpacity style={style.button} onPress={deletePress}>
           <Image
@@ -16,7 +16,7 @@ const SimpleCard: React.FC = ({name, handlePress, deletePress}) => {
           />
         </TouchableOpacity>
       </View>
-      <Text style={style.text}>{name}</Text>
+      <Text style={[style.text, style.title]}>{name}</Text>
     </View>
   );
 };

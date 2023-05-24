@@ -5,7 +5,7 @@ import {COLOR} from '@config';
 export default StyleSheet.create({
   container: {
     width: 180,
-    height: 80,
+    height: 90,
     backgroundColor: COLOR.tiffanyBlue,
     borderRadius: 5,
     alignItems: 'center',
@@ -34,7 +34,9 @@ export default StyleSheet.create({
   },
   text: {
     color: COLOR.white,
-    textTransform: 'uppercase',
-    letterSpacing: 5,
+    letterSpacing: 1,
+  },
+  title: {
+    fontSize: 20,
   },
 });

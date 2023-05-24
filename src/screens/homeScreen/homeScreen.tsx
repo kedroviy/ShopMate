@@ -69,7 +69,7 @@ const HomeScreen: React.FC = () => {
   };
 
   useEffect(() => {
-    console.log('home', listsFromDB);
+    console.log('home', listsFromDB.length);
     !listsFromDB.length ? getLists() : null;
   }, [listsFromDB]);
 
@@ -88,7 +88,12 @@ const HomeScreen: React.FC = () => {
           style={style.modalForm}
           visible={modalVisible}
           animationType="slide">
-          <CreateListModal handlePress={() => setModalVisible(!modalVisible)} />
+          <CreateListModal
+            handlePress={() => {
+              setModalVisible(!modalVisible);
+              getLists();
+            }}
+          />
         </Modal>
         <>
           <ScrollView contentContainerStyle={style.scroll}>
