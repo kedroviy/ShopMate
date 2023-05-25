@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Text,
   Modal,
+  ActivityIndicator,
 } from 'react-native';
 import {useDispatch} from 'react-redux';
 import {openDatabase} from 'react-native-sqlite-storage';
@@ -21,10 +22,11 @@ const db = openDatabase({
 });
 
 const HomeScreen: React.FC = () => {
-  const dispatch = useDispatch();
-  const navigation = useNavigation();
-  const [modalVisible, setModalVisible] = useState(false);
-  const [listsFromDB, setListsFromDB] = useState([]);
+  const dispatch: DispatchFunc = useDispatch();
+  const navigation: NavigationFunc = useNavigation();
+  const [modalVisible, setModalVisible] = useState<boolean>(false);
+  const [listsFromDB, setListsFromDB] = useState<Array>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const getLists = () => {
     db.transaction(txn => {
@@ -69,8 +71,18 @@ const HomeScreen: React.FC = () => {
   };
 
   useEffect(() => {
-    console.log('home', listsFromDB.length);
-    !listsFromDB.length ? getLists() : null;
+    if (!listsFromDB.length) {
+      setIsLoading(true);
+      getLists();
+
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
+
+      return () => clearTimeout(timer);
+    } else {
+      setIsLoading(false);
+    }
   }, [listsFromDB]);
 
   return (
@@ -95,27 +107,33 @@ const HomeScreen: React.FC = () => {
             }}
           />
         </Modal>
-        <>
-          <ScrollView contentContainerStyle={style.scroll}>
-            {listsFromDB.length ? (
-              listsFromDB.map(item => (
-                <SimpleCard
-                  key={item.id}
-                  {...item}
-                  handlePress={() => setListItemInStore({...item})}
-                  deletePress={() => onDeleteListItemFromStore({...item})}
-                />
-              ))
-            ) : (
-              <Text>No Lists Yet</Text>
-            )}
-          </ScrollView>
-          <TouchableOpacity
-            style={style.button}
-            onPress={() => setModalVisible(true)}>
-            <Text style={style.text}>add new list</Text>
-          </TouchableOpacity>
-        </>
+        <View style={style.contentContainer}>
+          {isLoading ? (
+            <>
+              <ActivityIndicator size="large" color="#3B61D3" />
+            </>
+          ) : (
+            <ScrollView contentContainerStyle={style.scroll}>
+              {listsFromDB.length ? (
+                listsFromDB.map(item => (
+                  <SimpleCard
+                    key={item.id}
+                    {...item}
+                    handlePress={() => setListItemInStore({...item})}
+                    deletePress={() => onDeleteListItemFromStore({...item})}
+                  />
+                ))
+              ) : (
+                <Text>No Lists Yet</Text>
+              )}
+            </ScrollView>
+          )}
+        </View>
+        <TouchableOpacity
+          style={style.button}
+          onPress={() => setModalVisible(true)}>
+          <Text style={style.text}>add new list</Text>
+        </TouchableOpacity>
       </SafeAreaView>
     </View>
   );

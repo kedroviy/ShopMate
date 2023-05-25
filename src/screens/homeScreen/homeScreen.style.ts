@@ -27,6 +27,10 @@ export default StyleSheet.create({
     height: '64%',
     padding: 0,
   },
+  contentContainer: {
+    justifyContent: 'center',
+    flex: 1,
+  },
   modalForm: {
     left: 30,
   },
