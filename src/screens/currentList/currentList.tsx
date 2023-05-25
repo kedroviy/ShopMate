@@ -97,7 +97,7 @@ const CurrentList: React.FC = () => {
       <View style={style.formContainer}>
         <View style={style.inputContainer}>
           <AnimateInput
-            animatedPlaceholderTextValue={'list item'}
+            animatedPlaceholderTextValue={'Enter text'}
             value={listItemInput}
             onChangeText={setListItemInput}
           />

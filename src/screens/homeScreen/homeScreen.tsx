@@ -90,10 +90,7 @@ const HomeScreen: React.FC = () => {
     <View style={style.container}>
       <View style={style.header}>
         <View style={style.loginName}>
-          <Text style={style.text}>login-name</Text>
-        </View>
-        <View style={style.avatar}>
-          <Text>avatar</Text>
+          <Text style={style.text}>Number of lists: {listsFromDB.length}</Text>
         </View>
       </View>
       <SafeAreaView style={style.mainContainer}>

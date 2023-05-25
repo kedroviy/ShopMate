@@ -67,7 +67,7 @@ export default StyleSheet.create({
     top: 50,
     alignItems: 'center',
     justifyContent: 'center',
-    width: 200,
+    width: 350,
     height: 40,
     backgroundColor: COLOR.moonstone,
     borderRadius: 5,

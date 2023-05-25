@@ -48,7 +48,7 @@ const CreateListModal: React.FC = ({handlePress}) => {
       </TouchableOpacity>
       <View style={style.formContainer}>
         <AnimateInput
-          animatedPlaceholderTextValue={'Enter list name'}
+          animatedPlaceholderTextValue={'Enter text'}
           value={listNameInput}
           onChangeText={setListNameInput}
         />

@@ -19,7 +19,7 @@ export default StyleSheet.create({
     position: 'absolute',
     alignItems: 'flex-start',
     justifyContent: 'center',
-    width: 100,
+    width: '28%',
     height: 20,
     bottom: 11,
     left: 10,
