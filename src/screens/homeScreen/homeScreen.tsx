@@ -63,6 +63,7 @@ const HomeScreen: React.FC = () => {
   );
 
   const onDeleteListItemFromStore = item => {
+    setListsFromDB(listsFromDB.filter(itemDB => itemDB.id !== item.id));
     db.transaction(txn => {
       txn.executeSql(`DELETE FROM lists WHERE id=${item.id}`, []);
       txn.executeSql(`DELETE FROM list WHERE list_id=${item.id}`, []);

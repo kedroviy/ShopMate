@@ -38,8 +38,8 @@ export default StyleSheet.create({
     backgroundColor: COLOR.white,
     shadowColor: '#000',
     shadowOpacity: 0.17,
-    shadowRadius: 4.65,
-    elevation: 3,
+    shadowRadius: 3.65,
+    elevation: 2,
 
     borderRadius: 4,
     justifyContent: 'center',
