@@ -14,11 +14,11 @@ const db = openDatabase({
 });
 
 const CurrentList: React.FC = () => {
-  const list = useSelector(state => state.listReducer);
+  const list = useSelector((state: IRootState) => state.listReducer);
   const [listHeaderTitle, setListHeaderTitle] = useState<Array>([]);
   const [listItemInput, setListItemInput] = useState<string>('');
   const [listArray, setListArray] = useState<Array>([]);
-  const [listsFromDB, setListsFromDB] = useState([]);
+  const [listsFromDB, setListsFromDB] = useState<Array>([]);
 
   const setObjectFromString = (string: string, array: Array) => {
     let id = array.length;
@@ -26,7 +26,7 @@ const CurrentList: React.FC = () => {
     setListItemInput(null);
   };
 
-  const setItemsInDB = item => {
+  const setItemsInDB: React.FC = item => {
     db.transaction(txn => {
       txn.executeSql(
         `INSERT INTO list (name, list_id) VALUES("${item}", "${listHeaderTitle.id}")`,
@@ -42,7 +42,7 @@ const CurrentList: React.FC = () => {
     getLists();
   };
 
-  const getLists = () => {
+  const getLists: React.FC = () => {
     db.transaction(txn => {
       txn.executeSql(
         `SELECT * FROM list WHERE list_id = ${listHeaderTitle.id}`,
@@ -72,7 +72,7 @@ const CurrentList: React.FC = () => {
     });
   };
 
-  const onDeleteListItemFromStore = item => {
+  const onDeleteListItemFromStore: React.FC = item => {
     db.transaction(txn => {
       txn.executeSql(`DELETE FROM list WHERE id=${item}`, []);
     });
@@ -82,7 +82,6 @@ const CurrentList: React.FC = () => {
   useEffect(() => {
     list ? setListHeaderTitle(list.list) : null;
     getLists();
-    console.log('current: ', listArray);
   }, [list, listHeaderTitle, listItemInput]);
 
   return (

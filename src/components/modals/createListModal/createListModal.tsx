@@ -27,8 +27,6 @@ const CreateListModal: React.FC = ({handlePress}) => {
           [listName],
           (sqlTxn, res) => {
             console.log(`${listName} list added successfully`);
-            getCategories();
-            setCategory('');
           },
           error => {
             console.log('error on adding list ' + error.message);
