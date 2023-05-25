@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, {useState, useCallback} from 'react';
-import {Image, View, TouchableOpacity} from 'react-native';
+import {Image, View, TouchableOpacity, Text} from 'react-native';
 import {openDatabase} from 'react-native-sqlite-storage';
 
 import {AnimateInput} from '@components';
@@ -59,10 +59,7 @@ const CreateListModal: React.FC = ({handlePress}) => {
           onPress={() => {
             addNewList(listNameInput);
           }}>
-          <Image
-            style={style.arrowBackIcon}
-            source={require('../../../assets/plus.png')}
-          />
+          <Text style={style.text}>Done</Text>
         </TouchableOpacity>
       </View>
     </View>
