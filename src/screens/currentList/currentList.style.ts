@@ -33,7 +33,7 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     height: 50,
     paddingHorizontal: 10,
-    backgroundColor: COLOR.orange,
+    backgroundColor: COLOR.orangeExtra,
   },
   headerText: {
     color: COLOR.white,

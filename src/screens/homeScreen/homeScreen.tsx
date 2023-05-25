@@ -89,7 +89,7 @@ const HomeScreen: React.FC = () => {
     <View style={style.container}>
       <View style={style.header}>
         <View style={style.loginName}>
-          <Text>login-name</Text>
+          <Text style={style.text}>login-name</Text>
         </View>
         <View style={style.avatar}>
           <Text>avatar</Text>
