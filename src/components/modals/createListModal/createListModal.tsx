@@ -42,8 +42,8 @@ const CreateListModal: React.FC = ({handlePress}) => {
     <View style={style.container}>
       <TouchableOpacity style={style.buttonBack} onPress={handlePress}>
         <Image
-          style={style.arrowBackIcon}
-          source={require('../../../assets/arrow.png')}
+          style={style.closeModalIcon}
+          source={require('../../../assets/close.png')}
         />
       </TouchableOpacity>
       <View style={style.formContainer}>

@@ -23,21 +23,17 @@ export default StyleSheet.create({
     bottom: 5,
   },
   buttonBack: {
-    right: 130,
+    flexDirection: 'row',
+    left: 145,
     bottom: 150,
     width: 40,
     height: 40,
   },
-  arrowBackIcon: {
-    width: 23,
-    height: 23,
+  closeModalIcon: {
+    width: 25,
+    height: 25,
   },
   applyButtonContainer: {
-    shadowColor: '#000',
-    shadowOpacity: 0.17,
-    shadowRadius: 4.65,
-    elevation: 2,
-
     top: 130,
     width: 250,
     height: 50,
