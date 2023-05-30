@@ -2,6 +2,7 @@
 import React, {useState, useCallback} from 'react';
 import {Image, View, TouchableOpacity, Text} from 'react-native';
 import {openDatabase} from 'react-native-sqlite-storage';
+import {useNavigation} from '@react-navigation/native';
 
 import {AnimateInput} from '@components';
 
@@ -12,6 +13,7 @@ const db = openDatabase({
 });
 
 const CreateListModal: React.FC = ({handlePress}) => {
+  const navigation: NavigationFunc = useNavigation();
   const [listNameInput, setListNameInput] = useState<string>('');
 
   const addNewList = useCallback(
@@ -33,9 +35,9 @@ const CreateListModal: React.FC = ({handlePress}) => {
           },
         );
       });
-      handlePress();
+      navigation.navigate('Home Screen');
     },
-    [handlePress, listNameInput],
+    [listNameInput, navigation],
   );
 
   return (

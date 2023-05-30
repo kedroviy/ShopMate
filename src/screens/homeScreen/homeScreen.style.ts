@@ -15,7 +15,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    bottom: 80,
+    bottom: 75,
     borderRadius: 5,
     width: '95%',
     height: 60,

@@ -3,7 +3,6 @@ import {
   View,
   ScrollView,
   SafeAreaView,
-  TouchableOpacity,
   Text,
   ActivityIndicator,
 } from 'react-native';
@@ -114,11 +113,6 @@ const HomeScreen: React.FC = () => {
             </ScrollView>
           )}
         </View>
-        <TouchableOpacity
-          style={style.button}
-          onPress={() => navigation.navigate('List type Screen')}>
-          <Text style={style.text}>add new list</Text>
-        </TouchableOpacity>
       </SafeAreaView>
     </View>
   );

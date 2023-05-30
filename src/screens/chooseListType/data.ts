@@ -9,6 +9,6 @@ export const DATA = [
   },
   {
     id: 3,
-    title: 'List with timer',
+    title: 'List with notification',
   },
 ];

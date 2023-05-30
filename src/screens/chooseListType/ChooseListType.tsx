@@ -8,7 +8,7 @@ import style from './chooseListType.style.ts';
 
 const ChooseListType: React.FC = () => {
   const width = Dimensions.get('window').width;
-  const [simpleList, setSimpleList] = useState<boolean>(true);
+  const [simpleList, setSimpleList] = useState<boolean>(false);
 
   const openList = id => {
     switch (id) {
