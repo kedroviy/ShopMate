@@ -5,7 +5,6 @@ import {
   SafeAreaView,
   TouchableOpacity,
   Text,
-  Modal,
   ActivityIndicator,
 } from 'react-native';
 import {useDispatch} from 'react-redux';
@@ -13,7 +12,7 @@ import {openDatabase} from 'react-native-sqlite-storage';
 import {useNavigation} from '@react-navigation/native';
 
 import {addListInSore} from '../../core/redux/actions/appActions';
-import {SimpleCard, CreateListModal} from '@components';
+import {SimpleCard} from '@components';
 
 import style from './homeScreen.style.ts';
 
@@ -24,7 +23,6 @@ const db = openDatabase({
 const HomeScreen: React.FC = () => {
   const dispatch: DispatchFunc = useDispatch();
   const navigation: NavigationFunc = useNavigation();
-  const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [listsFromDB, setListsFromDB] = useState<Array>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -94,17 +92,6 @@ const HomeScreen: React.FC = () => {
         </View>
       </View>
       <SafeAreaView style={style.mainContainer}>
-        <Modal
-          style={style.modalForm}
-          visible={modalVisible}
-          animationType="slide">
-          <CreateListModal
-            handlePress={() => {
-              setModalVisible(!modalVisible);
-              getLists();
-            }}
-          />
-        </Modal>
         <View style={style.contentContainer}>
           {isLoading ? (
             <>
@@ -129,7 +116,7 @@ const HomeScreen: React.FC = () => {
         </View>
         <TouchableOpacity
           style={style.button}
-          onPress={() => setModalVisible(true)}>
+          onPress={() => navigation.navigate('List type Screen')}>
           <Text style={style.text}>add new list</Text>
         </TouchableOpacity>
       </SafeAreaView>
