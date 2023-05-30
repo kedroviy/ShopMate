@@ -10,9 +10,22 @@ const ChooseListType: React.FC = () => {
   const width = Dimensions.get('window').width;
   const [simpleList, setSimpleList] = useState<boolean>(true);
 
+  const openList = id => {
+    switch (id) {
+      case 1:
+        setSimpleList(true);
+        break;
+
+      default:
+        break;
+    }
+  };
+
   return (
     <View style={style.container}>
-      {simpleList ? <CreateListModal /> : null}
+      {simpleList ? (
+        <CreateListModal handlePress={() => setSimpleList(false)} />
+      ) : null}
       {!simpleList ? (
         <View style={style.carouselContainer}>
           <Carousel
@@ -22,7 +35,9 @@ const ChooseListType: React.FC = () => {
             data={[...DATA]}
             scrollAnimationDuration={1000}
             onSnapToItem={index => console.log('current index:', index)}
-            renderItem={({item}) => <ListTypeCard {...item} />}
+            renderItem={({item}) => (
+              <ListTypeCard {...item} openFunction={() => openList(item.id)} />
+            )}
           />
         </View>
       ) : null}

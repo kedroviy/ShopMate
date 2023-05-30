@@ -4,7 +4,7 @@ import {Text, View, TouchableOpacity} from 'react-native';
 
 import style from './listTypeCard.style.ts';
 
-const ListTypeCard: React.FC = ({title, description}) => {
+const ListTypeCard: React.FC = ({title, description, openFunction}) => {
   return (
     <View style={style.container}>
       <Text style={style.headerText}>{title}</Text>
@@ -12,7 +12,7 @@ const ListTypeCard: React.FC = ({title, description}) => {
         <Text>image</Text>
       </View>
       <Text>{description}</Text>
-      <TouchableOpacity style={style.button}>
+      <TouchableOpacity style={style.button} onPress={openFunction}>
         <Text style={style.text}>Open</Text>
       </TouchableOpacity>
     </View>
