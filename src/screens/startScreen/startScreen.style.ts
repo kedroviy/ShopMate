@@ -18,9 +18,12 @@ export default StyleSheet.create({
     backgroundColor: COLOR.simpleOrange,
     borderRadius: 3,
   },
+  tinyLogo: {
+    left: 10,
+  },
   text: {
-    color: COLOR.white,
-    textTransform: 'uppercase',
-    letterSpacing: 5,
+    color: COLOR.darkSlateGray,
+    letterSpacing: 3,
+    bottom: 80,
   },
 });

@@ -28,6 +28,16 @@ export default StyleSheet.create({
     justifyContent: 'center',
     marginTop: 3,
   },
+  closeButton: {
+    width: 25,
+    height: 25,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 8,
+    borderWidth: 1,
+    borderColor: COLOR.white,
+    borderRadius: 50,
+  },
   deleteIcon: {
     width: '60%',
     height: '60%',

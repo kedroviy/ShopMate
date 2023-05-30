@@ -3,6 +3,7 @@ import React, {useState, useCallback} from 'react';
 import {Image, View, TouchableOpacity, Text} from 'react-native';
 import {openDatabase} from 'react-native-sqlite-storage';
 import {useNavigation} from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {AnimateInput} from '@components';
 
@@ -43,10 +44,7 @@ const CreateListModal: React.FC = ({handlePress}) => {
   return (
     <View style={style.container}>
       <TouchableOpacity style={style.buttonBack} onPress={handlePress}>
-        <Image
-          style={style.closeModalIcon}
-          source={require('../../../assets/close.png')}
-        />
+        <Icon name="close" size={24} color="grey" />
       </TouchableOpacity>
       <View style={style.formContainer}>
         <AnimateInput
