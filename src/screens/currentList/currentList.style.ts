@@ -37,6 +37,8 @@ export default StyleSheet.create({
   },
   headerText: {
     color: COLOR.white,
+    fontSize: 20,
+    letterSpacing: 2,
   },
   scroll: {
     width: '100%',
