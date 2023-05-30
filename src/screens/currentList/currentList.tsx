@@ -62,7 +62,7 @@ const CurrentList: React.FC = () => {
               });
             }
 
-            setListArray(results);
+            setListsFromDB(results);
           }
         },
         error => {
@@ -72,15 +72,18 @@ const CurrentList: React.FC = () => {
     });
   };
 
-  const onDeleteListItemFromStore: React.FC = item => {
+  const onDeleteListItemFromStore = item => {
+    setListsFromDB(listsFromDB.filter(itemDB => itemDB.id !== item));
     db.transaction(txn => {
       txn.executeSql(`DELETE FROM list WHERE id=${item}`, []);
     });
-    getLists();
+    console.log(listsFromDB);
   };
 
   useEffect(() => {
-    list ? setListHeaderTitle(list.list) : null;
+    if (list) {
+      setListHeaderTitle(list.list);
+    }
     getLists();
   }, [list, listHeaderTitle, listItemInput]);
 
@@ -94,7 +97,7 @@ const CurrentList: React.FC = () => {
       <View style={style.formContainer}>
         <View style={style.inputContainer}>
           <AnimateInput
-            animatedPlaceholderTextValue={'list item'}
+            animatedPlaceholderTextValue={'Enter text'}
             value={listItemInput}
             onChangeText={setListItemInput}
           />
@@ -111,13 +114,16 @@ const CurrentList: React.FC = () => {
         <View style={style.fakeShadow} />
       </View>
       <View style={style.listContainer}>
-        {listArray.length ? (
+        {listsFromDB.length ? (
           <FlatList
-            data={listArray}
+            data={listsFromDB}
             renderItem={({item}) => (
               <ListRow
                 name={item.name}
-                deletePress={() => onDeleteListItemFromStore(item.id)}
+                deletePress={() => {
+                  onDeleteListItemFromStore(item.id);
+                  getLists();
+                }}
               />
             )}
             keyExtractor={item => item.id}

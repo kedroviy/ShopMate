@@ -1,11 +1,13 @@
 const COLOR = {
   simpleOrange: '#DE590E',
   white: '#ffff',
+  grey: '#f8f9fa',
   dust: '#FDE9C9',
   extraLightBlue: '#DEECED',
   coquelicot: '#F34213',
   peachYellow: '#F7DBA7',
   orange: '#EE8434',
+  orangeExtra: '#f77f00',
   darkSlateGray: '#395458',
   timberWolf: '#F0F0EB',
   platinum: '#D7DEDC',

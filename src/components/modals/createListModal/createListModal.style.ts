@@ -11,7 +11,7 @@ export default StyleSheet.create({
 
     width: '80%',
     height: 480,
-    backgroundColor: COLOR.timberWolf,
+    backgroundColor: COLOR.white,
     borderRadius: 5,
     alignItems: 'center',
     justifyContent: 'center',
@@ -22,37 +22,37 @@ export default StyleSheet.create({
   formContainer: {
     bottom: 5,
   },
-  text: {
-    color: COLOR.black,
-    textTransform: 'uppercase',
-    letterSpacing: 5,
-  },
   buttonBack: {
-    right: 130,
+    flexDirection: 'row',
+    left: 145,
     bottom: 150,
     width: 40,
     height: 40,
   },
-  arrowBackIcon: {
+  closeModalIcon: {
     width: 25,
     height: 25,
   },
   applyButtonContainer: {
-    shadowColor: '#000',
-    shadowOpacity: 0.27,
-    shadowRadius: 4.65,
-    elevation: 6,
-
-    top: 120,
-    width: 50,
+    top: 130,
+    width: 250,
     height: 50,
-    backgroundColor: COLOR.royalBlue,
-    borderRadius: 25,
+    borderColor: COLOR.royalBlue,
+    borderWidth: 3,
+    borderRadius: 4,
   },
   applyButton: {
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     width: '100%',
     height: '100%',
+  },
+  text: {
+    color: COLOR.royalBlue,
+    marginLeft: 10,
+    textTransform: 'uppercase',
+    fontSize: 17,
+    fontWeight: 'bold',
   },
 });

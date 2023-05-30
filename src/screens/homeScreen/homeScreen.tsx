@@ -63,6 +63,7 @@ const HomeScreen: React.FC = () => {
   );
 
   const onDeleteListItemFromStore = item => {
+    setListsFromDB(listsFromDB.filter(itemDB => itemDB.id !== item.id));
     db.transaction(txn => {
       txn.executeSql(`DELETE FROM lists WHERE id=${item.id}`, []);
       txn.executeSql(`DELETE FROM list WHERE list_id=${item.id}`, []);
@@ -89,10 +90,7 @@ const HomeScreen: React.FC = () => {
     <View style={style.container}>
       <View style={style.header}>
         <View style={style.loginName}>
-          <Text>login-name</Text>
-        </View>
-        <View style={style.avatar}>
-          <Text>avatar</Text>
+          <Text style={style.text}>Number of lists: {listsFromDB.length}</Text>
         </View>
       </View>
       <SafeAreaView style={style.mainContainer}>

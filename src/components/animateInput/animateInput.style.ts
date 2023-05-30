@@ -19,12 +19,10 @@ export default StyleSheet.create({
     position: 'absolute',
     alignItems: 'flex-start',
     justifyContent: 'center',
-    width: 100,
     height: 20,
     bottom: 11,
     left: 10,
     paddingHorizontal: 20,
-    backgroundColor: COLOR.timberWolf,
     fontSize: 15,
   },
 
@@ -33,10 +31,13 @@ export default StyleSheet.create({
     width: '100%',
     left: 3,
     color: COLOR.eggplant,
+    paddingLeft: 5,
+    paddingRight: 5,
     fontSize: 12,
+    backgroundColor: COLOR.white,
   },
   touch: {
-    width: 235,
+    backgroundColor: COLOR.white,
     right: 16,
   },
 });
