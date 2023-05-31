@@ -13,4 +13,7 @@ export default StyleSheet.create({
     top: 60,
     flex: 1,
   },
+  swipeIcon: {
+    flex: 0.2,
+  },
 });

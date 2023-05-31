@@ -10,7 +10,7 @@ export default StyleSheet.create({
     elevation: 3,
 
     width: 350,
-    height: 500,
+    height: '75%',
     alignItems: 'center',
     justifyContent: 'space-between',
     backgroundColor: COLOR.white,

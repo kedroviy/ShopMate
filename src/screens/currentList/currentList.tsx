@@ -83,6 +83,11 @@ const CurrentList: React.FC = () => {
     console.log(listsFromDB);
   };
 
+  const setInList = item => {
+    setItemsInDB(item);
+    setListItemInput('');
+  };
+
   useEffect(() => {
     if (list) {
       setListHeaderTitle(list.list);
@@ -108,7 +113,7 @@ const CurrentList: React.FC = () => {
           <TouchableOpacity
             style={style.addButton}
             onPress={() =>
-              listItemInput.length ? setItemsInDB(listItemInput) : null
+              listItemInput.length ? setInList(listItemInput) : null
             }>
             <Text style={style.addButtonText}>add</Text>
           </TouchableOpacity>

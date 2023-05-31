@@ -27,8 +27,8 @@ function TabNavigation() {
           }
           return <Icon name={iconName} size={size} color={color} />;
         },
-        tabBarActiveTintColor: `${COLOR.orange}`,
-        tabBarInactiveTintColor: `${COLOR.royalBlue}`,
+        tabBarActiveTintColor: `${COLOR.coquelicot}`,
+        tabBarInactiveTintColor: `${COLOR.greyExtra}`,
         headerShown: false,
       })}>
       <Tab.Screen name="Home Screen" component={HomeScreen} />

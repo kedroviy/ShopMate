@@ -1,14 +1,15 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Dimensions, View} from 'react-native';
 import Carousel from 'react-native-reanimated-carousel';
 
-import {ListTypeCard, CreateListModal} from '@components';
+import {ListTypeCard, CreateListModal, AnimateSwipeIcon} from '@components';
 import {DATA} from './data.ts';
 import style from './chooseListType.style.ts';
 
 const ChooseListType: React.FC = () => {
   const width = Dimensions.get('window').width;
   const [simpleList, setSimpleList] = useState<boolean>(false);
+  const [isSwipeIconVisible, setIsSwipeIconVisible] = useState<boolean>(true);
 
   const openList = id => {
     switch (id) {
@@ -20,6 +21,14 @@ const ChooseListType: React.FC = () => {
         break;
     }
   };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsSwipeIconVisible(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <View style={style.container}>
@@ -41,6 +50,9 @@ const ChooseListType: React.FC = () => {
           />
         </View>
       ) : null}
+      <View style={style.swipeIcon}>
+        {isSwipeIconVisible ? <AnimateSwipeIcon /> : null}
+      </View>
     </View>
   );
 };
