@@ -3,8 +3,10 @@ import React, {useState, useCallback} from 'react';
 import {Image, View, TouchableOpacity, Text} from 'react-native';
 import {openDatabase} from 'react-native-sqlite-storage';
 import {useNavigation} from '@react-navigation/native';
+import {useDispatch} from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
+import {isLoad} from '../../../core/redux/actions/appActions';
 import {AnimateInput} from '@components';
 
 import style from './createListModal.style.ts';
@@ -15,6 +17,7 @@ const db = openDatabase({
 
 const CreateListModal: React.FC = ({handlePress}) => {
   const navigation: NavigationFunc = useNavigation();
+  const dispatch: DispatchFunc = useDispatch();
   const [listNameInput, setListNameInput] = useState<string>('');
 
   const addNewList = useCallback(
@@ -36,10 +39,12 @@ const CreateListModal: React.FC = ({handlePress}) => {
           },
         );
       });
+
+      dispatch(isLoad(true));
       setListNameInput('');
       navigation.navigate('Home Screen');
     },
-    [listNameInput, navigation],
+    [dispatch, listNameInput, navigation],
   );
 
   return (

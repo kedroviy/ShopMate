@@ -1,8 +1,8 @@
-import {GET_LIST, ADD_LIST_IN_STORE, SET_CURRENT_SCREEN} from '../TYPES';
+import {GET_LIST, ADD_LIST_IN_STORE, IS_LOADING} from '../TYPES';
 
 const initialState = {
   list: [],
-  currentScreen: '',
+  isLoading: false,
 };
 
 function listReducer(state = initialState, action) {
@@ -11,8 +11,8 @@ function listReducer(state = initialState, action) {
       return {...state, list: action.payload};
     case GET_LIST:
       return {...state, list: action.payload};
-    case SET_CURRENT_SCREEN:
-      return {...state, currentScreen: action.payload};
+    case IS_LOADING:
+      return {...state, isLoading: action.payload};
     default:
       return state;
   }

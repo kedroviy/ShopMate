@@ -7,11 +7,11 @@ import {
   ActivityIndicator,
   RefreshControl,
 } from 'react-native';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {openDatabase} from 'react-native-sqlite-storage';
 import {useNavigation} from '@react-navigation/native';
 
-import {addListInSore} from '../../core/redux/actions/appActions';
+import {addListInSore, isLoad} from '../../core/redux/actions/appActions';
 import {SimpleCard} from '@components';
 
 import style from './homeScreen.style.ts';
@@ -22,6 +22,7 @@ const db = openDatabase({
 
 const HomeScreen: React.FC = () => {
   const dispatch: DispatchFunc = useDispatch();
+  const isLoadList = useSelector(state => state.listReducer);
   const navigation: NavigationFunc = useNavigation();
   const [listsFromDB, setListsFromDB] = useState<Array>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -32,7 +33,7 @@ const HomeScreen: React.FC = () => {
         'SELECT * FROM lists ORDER BY id DESC',
         [],
         (sqlTxn, res) => {
-          console.log('lists retrieved successfully');
+          console.log('home sc: ', 'lists retrieved successfully');
           let len = res.rows.length;
 
           if (len > 0) {
@@ -93,11 +94,18 @@ const HomeScreen: React.FC = () => {
       setIsLoading(false);
     }
 
-    if (isLoading) {
-      getLists();
+    if (isLoadList.isLoading) {
+      setIsLoading(true);
+    } else {
       setIsLoading(false);
     }
-  }, [isLoading, listsFromDB]);
+
+    if (isLoading) {
+      getLists();
+      dispatch(isLoad(false));
+      setIsLoading(false);
+    }
+  }, [dispatch, isLoadList.isLoading, isLoading, listsFromDB]);
 
   return (
     <View style={style.container}>

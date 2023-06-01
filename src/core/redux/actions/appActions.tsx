@@ -1,4 +1,4 @@
-import {ADD_LIST_IN_STORE, GET_LIST, SET_CURRENT_SCREEN} from '../TYPES.ts';
+import {ADD_LIST_IN_STORE, GET_LIST, IS_LOADING} from '../TYPES.ts';
 
 export function addListInSore({id, name}) {
   return {
@@ -17,9 +17,9 @@ export function getListFromStore(id: number) {
   };
 }
 
-export function setCurrentScreen(screenName: string) {
+export function isLoad(loading: boolean) {
   return {
-    type: SET_CURRENT_SCREEN,
-    payload: screenName,
+    type: IS_LOADING,
+    payload: loading,
   };
 }
