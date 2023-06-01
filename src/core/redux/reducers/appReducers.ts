@@ -1,9 +1,8 @@
-import {GET_LIST, ADD_LIST_IN_STORE} from '../TYPES';
+import {GET_LIST, ADD_LIST_IN_STORE, SET_CURRENT_SCREEN} from '../TYPES';
 
 const initialState = {
-  login: '',
   list: [],
-  newListModalWindow: false,
+  currentScreen: '',
 };
 
 function listReducer(state = initialState, action) {
@@ -12,6 +11,8 @@ function listReducer(state = initialState, action) {
       return {...state, list: action.payload};
     case GET_LIST:
       return {...state, list: action.payload};
+    case SET_CURRENT_SCREEN:
+      return {...state, currentScreen: action.payload};
     default:
       return state;
   }

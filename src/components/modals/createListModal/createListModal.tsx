@@ -36,6 +36,7 @@ const CreateListModal: React.FC = ({handlePress}) => {
           },
         );
       });
+      setListNameInput('');
       navigation.navigate('Home Screen');
     },
     [listNameInput, navigation],

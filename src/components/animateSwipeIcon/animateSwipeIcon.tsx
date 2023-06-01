@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View} from 'react-native';
+import {View, Text} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import Animated, {
   useSharedValue,
@@ -29,7 +29,7 @@ const AnimateSwipeIcon: React.FC = () => {
     }
     const timer = setTimeout(() => {
       setIsAnimate(false);
-    }, 1500);
+    }, 2500);
 
     return () => clearTimeout(timer);
   }, [isAnimate, rotation]);
@@ -39,6 +39,7 @@ const AnimateSwipeIcon: React.FC = () => {
       <Animated.View style={animatedStyle}>
         <Icon name="swipe" size={44} color="grey" />
       </Animated.View>
+      <Text>Swipe</Text>
     </View>
   );
 };

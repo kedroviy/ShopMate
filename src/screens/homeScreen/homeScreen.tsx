@@ -5,6 +5,7 @@ import {
   SafeAreaView,
   Text,
   ActivityIndicator,
+  RefreshControl,
 } from 'react-native';
 import {useDispatch} from 'react-redux';
 import {openDatabase} from 'react-native-sqlite-storage';
@@ -68,6 +69,16 @@ const HomeScreen: React.FC = () => {
     getLists();
   };
 
+  const onRefresh = useCallback(() => {
+    setIsLoading(true);
+
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   useEffect(() => {
     if (!listsFromDB.length) {
       setIsLoading(true);
@@ -81,7 +92,12 @@ const HomeScreen: React.FC = () => {
     } else {
       setIsLoading(false);
     }
-  }, [listsFromDB]);
+
+    if (isLoading) {
+      getLists();
+      setIsLoading(false);
+    }
+  }, [isLoading, listsFromDB]);
 
   return (
     <View style={style.container}>
@@ -97,7 +113,11 @@ const HomeScreen: React.FC = () => {
               <ActivityIndicator size="large" color="#3B61D3" />
             </>
           ) : (
-            <ScrollView contentContainerStyle={style.scroll}>
+            <ScrollView
+              contentContainerStyle={style.scroll}
+              refreshControl={
+                <RefreshControl refreshing={isLoading} onRefresh={onRefresh} />
+              }>
               {listsFromDB.length ? (
                 listsFromDB.map(item => (
                   <SimpleCard
