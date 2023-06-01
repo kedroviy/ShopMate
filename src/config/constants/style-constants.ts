@@ -2,6 +2,7 @@ const COLOR = {
   simpleOrange: '#DE590E',
   white: '#ffff',
   grey: '#f8f9fa',
+  greyExtra: '#495057',
   dust: '#FDE9C9',
   extraLightBlue: '#DEECED',
   coquelicot: '#F34213',

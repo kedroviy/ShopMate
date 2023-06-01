@@ -16,8 +16,6 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     margin: 5,
-    left: 35,
-    top: 60,
   },
   formContainer: {
     bottom: 5,

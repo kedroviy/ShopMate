@@ -1,5 +1,7 @@
 import React from 'react';
-import {Text, View, TouchableOpacity, Image} from 'react-native';
+import {Text, View, TouchableOpacity} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
 import style from './simpleCard.style.ts';
 
 const SimpleCard: React.FC = ({name, handlePress, deletePress}) => {
@@ -9,11 +11,8 @@ const SimpleCard: React.FC = ({name, handlePress, deletePress}) => {
         <TouchableOpacity style={style.button} onPress={handlePress}>
           <Text style={style.text}>Show</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={style.button} onPress={deletePress}>
-          <Image
-            style={style.deleteIcon}
-            source={require('../../assets/close-button.png')}
-          />
+        <TouchableOpacity style={style.closeButton} onPress={deletePress}>
+          <Icon name="close" size={15} color="white" />
         </TouchableOpacity>
       </View>
       <Text style={[style.text, style.title]}>{name}</Text>

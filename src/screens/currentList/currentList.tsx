@@ -4,6 +4,8 @@ import React, {useState, useEffect} from 'react';
 import {Text, View, TouchableOpacity, FlatList} from 'react-native';
 import {useSelector} from 'react-redux';
 import {openDatabase} from 'react-native-sqlite-storage';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import {useNavigation} from '@react-navigation/native';
 
 import {AnimateInput, ListRow} from '@components';
 
@@ -15,6 +17,7 @@ const db = openDatabase({
 
 const CurrentList: React.FC = () => {
   const list = useSelector((state: IRootState) => state.listReducer);
+  const navigation: NavigationFunc = useNavigation();
   const [listHeaderTitle, setListHeaderTitle] = useState<Array>([]);
   const [listItemInput, setListItemInput] = useState<string>('');
   const [listArray, setListArray] = useState<Array>([]);
@@ -80,6 +83,11 @@ const CurrentList: React.FC = () => {
     console.log(listsFromDB);
   };
 
+  const setInList = item => {
+    setItemsInDB(item);
+    setListItemInput('');
+  };
+
   useEffect(() => {
     if (list) {
       setListHeaderTitle(list.list);
@@ -90,10 +98,11 @@ const CurrentList: React.FC = () => {
   return (
     <View style={style.container}>
       <View key={listHeaderTitle.id} style={style.header}>
-        <Text style={style.headerText}>{listHeaderTitle.id}</Text>
+        <TouchableOpacity onPress={() => navigation.goBack(null)}>
+          <Icon name="arrow-back" size={24} color="white" />
+        </TouchableOpacity>
         <Text style={style.headerText}>{listHeaderTitle.name}</Text>
       </View>
-
       <View style={style.formContainer}>
         <View style={style.inputContainer}>
           <AnimateInput
@@ -104,7 +113,7 @@ const CurrentList: React.FC = () => {
           <TouchableOpacity
             style={style.addButton}
             onPress={() =>
-              listItemInput.length ? setItemsInDB(listItemInput) : null
+              listItemInput.length ? setInList(listItemInput) : null
             }>
             <Text style={style.addButtonText}>add</Text>
           </TouchableOpacity>

@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import 'react-native-gesture-handler';
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {openDatabase} from 'react-native-sqlite-storage';
 
+import {StartScreen} from '@screens';
 import {Navigation} from '@navigation';
 
 const db = openDatabase({
@@ -12,6 +13,7 @@ const db = openDatabase({
 });
 
 function App(): JSX.Element {
+  const [isStartScreen, setIsStartScreen] = useState<boolean>(true);
   const createTables = () => {
     db.transaction(txn => {
       txn.executeSql(
@@ -40,12 +42,20 @@ function App(): JSX.Element {
   };
 
   useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsStartScreen(false);
+    }, 1500);
+
     createTables();
+
+    return () => {
+      clearTimeout(timer1);
+    };
   }, []);
 
   return (
     <NavigationContainer>
-      <Navigation />
+      {isStartScreen ? <StartScreen /> : <Navigation />}
     </NavigationContainer>
   );
 }

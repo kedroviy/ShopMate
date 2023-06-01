@@ -11,17 +11,11 @@ export default StyleSheet.create({
     backgroundColor: COLOR.grey,
   },
   header: {
-    // shadowColor: '#000',
-    // shadowOpacity: 0.17,
-    // shadowRadius: 3.65,
-    // elevation: 2,
-
-    // backgroundColor: COLOR.orangeExtra,
     backgroundColor: '#457B9D',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    bottom: 80,
+    bottom: 75,
     borderRadius: 5,
     width: '95%',
     height: 60,

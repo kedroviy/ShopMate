@@ -23,6 +23,7 @@ export default StyleSheet.create({
     bottom: 11,
     left: 10,
     paddingHorizontal: 20,
+    backgroundColor: COLOR.white,
     fontSize: 15,
   },
 

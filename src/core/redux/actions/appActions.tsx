@@ -1,4 +1,4 @@
-import {ADD_LIST_IN_STORE, GET_LIST} from '../TYPES.ts';
+import {ADD_LIST_IN_STORE, GET_LIST, IS_LOADING} from '../TYPES.ts';
 
 export function addListInSore({id, name}) {
   return {
@@ -10,9 +10,16 @@ export function addListInSore({id, name}) {
   };
 }
 
-export function getListFromStore(id) {
+export function getListFromStore(id: number) {
   return {
     type: GET_LIST,
     payload: id,
+  };
+}
+
+export function isLoad(loading: boolean) {
+  return {
+    type: IS_LOADING,
+    payload: loading,
   };
 }

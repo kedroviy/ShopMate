@@ -3,17 +3,16 @@ import {
   View,
   ScrollView,
   SafeAreaView,
-  TouchableOpacity,
   Text,
-  Modal,
   ActivityIndicator,
+  RefreshControl,
 } from 'react-native';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {openDatabase} from 'react-native-sqlite-storage';
 import {useNavigation} from '@react-navigation/native';
 
-import {addListInSore} from '../../core/redux/actions/appActions';
-import {SimpleCard, CreateListModal} from '@components';
+import {addListInSore, isLoad} from '../../core/redux/actions/appActions';
+import {SimpleCard} from '@components';
 
 import style from './homeScreen.style.ts';
 
@@ -23,8 +22,8 @@ const db = openDatabase({
 
 const HomeScreen: React.FC = () => {
   const dispatch: DispatchFunc = useDispatch();
+  const isLoadList = useSelector(state => state.listReducer);
   const navigation: NavigationFunc = useNavigation();
-  const [modalVisible, setModalVisible] = useState<boolean>(false);
   const [listsFromDB, setListsFromDB] = useState<Array>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -34,7 +33,7 @@ const HomeScreen: React.FC = () => {
         'SELECT * FROM lists ORDER BY id DESC',
         [],
         (sqlTxn, res) => {
-          console.log('lists retrieved successfully');
+          console.log('home sc: ', 'lists retrieved successfully');
           let len = res.rows.length;
 
           if (len > 0) {
@@ -71,6 +70,16 @@ const HomeScreen: React.FC = () => {
     getLists();
   };
 
+  const onRefresh = useCallback(() => {
+    setIsLoading(true);
+
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   useEffect(() => {
     if (!listsFromDB.length) {
       setIsLoading(true);
@@ -84,7 +93,19 @@ const HomeScreen: React.FC = () => {
     } else {
       setIsLoading(false);
     }
-  }, [listsFromDB]);
+
+    if (isLoadList.isLoading) {
+      setIsLoading(true);
+    } else {
+      setIsLoading(false);
+    }
+
+    if (isLoading) {
+      getLists();
+      dispatch(isLoad(false));
+      setIsLoading(false);
+    }
+  }, [dispatch, isLoadList.isLoading, isLoading, listsFromDB]);
 
   return (
     <View style={style.container}>
@@ -94,24 +115,17 @@ const HomeScreen: React.FC = () => {
         </View>
       </View>
       <SafeAreaView style={style.mainContainer}>
-        <Modal
-          style={style.modalForm}
-          visible={modalVisible}
-          animationType="slide">
-          <CreateListModal
-            handlePress={() => {
-              setModalVisible(!modalVisible);
-              getLists();
-            }}
-          />
-        </Modal>
         <View style={style.contentContainer}>
           {isLoading ? (
             <>
               <ActivityIndicator size="large" color="#3B61D3" />
             </>
           ) : (
-            <ScrollView contentContainerStyle={style.scroll}>
+            <ScrollView
+              contentContainerStyle={style.scroll}
+              refreshControl={
+                <RefreshControl refreshing={isLoading} onRefresh={onRefresh} />
+              }>
               {listsFromDB.length ? (
                 listsFromDB.map(item => (
                   <SimpleCard
@@ -127,11 +141,6 @@ const HomeScreen: React.FC = () => {
             </ScrollView>
           )}
         </View>
-        <TouchableOpacity
-          style={style.button}
-          onPress={() => setModalVisible(true)}>
-          <Text style={style.text}>add new list</Text>
-        </TouchableOpacity>
       </SafeAreaView>
     </View>
   );
