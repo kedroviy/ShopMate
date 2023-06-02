@@ -6,7 +6,6 @@ export default StyleSheet.create({
   container: {
     width: 180,
     height: 90,
-    backgroundColor: COLOR.tiffanyBlue,
     borderRadius: 5,
     alignItems: 'center',
     margin: 5,

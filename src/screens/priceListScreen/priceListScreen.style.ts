@@ -10,22 +10,6 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     backgroundColor: COLOR.white,
   },
-  formContainer: {
-    width: '105%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: 55,
-  },
-  inputContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  listContainer: {
-    width: '100%',
-    alignItems: 'center',
-    flex: 0.8,
-  },
   header: {
     width: '100%',
     flexDirection: 'row',
@@ -33,7 +17,18 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     height: 50,
     paddingHorizontal: 10,
-    backgroundColor: COLOR.tiffanyBlue,
+    backgroundColor: COLOR.mountbattenPink,
+  },
+  formContainer: {
+    width: '105%',
+    alignItems: 'center',
+    height: 200,
+    borderBottomWidth: 1,
+  },
+  listContainer: {
+    width: '100%',
+    alignItems: 'center',
+    flex: 1,
   },
   headerText: {
     color: COLOR.white,
@@ -53,17 +48,7 @@ export default StyleSheet.create({
     height: 40,
     backgroundColor: COLOR.tiffanyBlue,
     borderRadius: 5,
-    marginLeft: 10,
-  },
-  saveButton: {
-    elevation: 3,
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 300,
-    height: 40,
-    backgroundColor: COLOR.mint,
-    borderRadius: 5,
-    marginRight: 25,
+    top: 30,
   },
   addButtonText: {
     color: COLOR.white,
@@ -73,21 +58,5 @@ export default StyleSheet.create({
     color: COLOR.white,
     textTransform: 'uppercase',
     letterSpacing: 5,
-  },
-  fakeShadowContainer: {
-    width: '105%',
-    overflow: 'hidden',
-    paddingBottom: 5,
-  },
-  fakeShadow: {
-    shadowColor: '#000',
-    shadowOffset: {width: 1, height: 1},
-    shadowOpacity: 0.4,
-    shadowRadius: 3,
-    elevation: 3,
-
-    backgroundColor: '#fff',
-    width: '105%',
-    height: 20,
   },
 });

@@ -40,7 +40,7 @@ const HomeScreen: React.FC = () => {
             let results = [];
             for (let i = 0; i < len; i++) {
               let item = res.rows.item(i);
-              results.push({id: item.id, name: item.name});
+              results.push({...item});
             }
 
             setListsFromDB(results);
@@ -56,7 +56,13 @@ const HomeScreen: React.FC = () => {
   const setListItemInStore = useCallback(
     item => {
       dispatch(addListInSore({...item}));
-      navigation.navigate('Current Screen');
+      if (item.list_type === '0') {
+        navigation.navigate('Current Screen');
+      } else if (item.list_type === '1') {
+        navigation.navigate('Price List Screen');
+      } else {
+        navigation.navigate('Current Screen');
+      }
     },
     [dispatch, navigation],
   );
@@ -65,7 +71,7 @@ const HomeScreen: React.FC = () => {
     setListsFromDB(listsFromDB.filter(itemDB => itemDB.id !== item.id));
     db.transaction(txn => {
       txn.executeSql(`DELETE FROM lists WHERE id=${item.id}`, []);
-      txn.executeSql(`DELETE FROM list WHERE list_id=${item.id}`, []);
+      txn.executeSql(`DELETE FROM simple_list WHERE list_id=${item.id}`, []);
     });
     getLists();
   };
@@ -102,6 +108,7 @@ const HomeScreen: React.FC = () => {
 
     if (isLoading) {
       getLists();
+      console.log(listsFromDB);
       dispatch(isLoad(false));
       setIsLoading(false);
     }
@@ -131,6 +138,7 @@ const HomeScreen: React.FC = () => {
                   <SimpleCard
                     key={item.id}
                     {...item}
+                    typeList={item.list_type}
                     handlePress={() => setListItemInStore({...item})}
                     deletePress={() => onDeleteListItemFromStore({...item})}
                   />

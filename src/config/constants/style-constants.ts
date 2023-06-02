@@ -21,6 +21,7 @@ const COLOR = {
   indianRed: '#C95D63',
   tiffanyBlue: '#3E517A',
   mint: '#21D19F',
+  black: '#03071e',
 };
 
 export {COLOR};

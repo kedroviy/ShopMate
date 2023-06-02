@@ -9,13 +9,13 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {isLoad} from '../../../core/redux/actions/appActions';
 import {AnimateInput} from '@components';
 
-import style from './createListModal.style.ts';
+import style from './priceListModal.style.ts';
 
 const db = openDatabase({
   name: 'shop_mate_db',
 });
 
-const CreateListModal: React.FC = ({handlePress}) => {
+const PriceListModal: React.FC = ({handlePress}) => {
   const navigation: NavigationFunc = useNavigation();
   const dispatch: DispatchFunc = useDispatch();
   const [listNameInput, setListNameInput] = useState<string>('');
@@ -29,7 +29,7 @@ const CreateListModal: React.FC = ({handlePress}) => {
 
       db.transaction(txn => {
         txn.executeSql(
-          'INSERT INTO lists (name, list_type) VALUES (?, 0)',
+          'INSERT INTO lists (name, list_type) VALUES (?, 1)',
           [listName],
           (sqlTxn, res) => {
             console.log(`${listName} list added successfully`);
@@ -53,7 +53,7 @@ const CreateListModal: React.FC = ({handlePress}) => {
         <Icon name="close" size={24} color="grey" />
       </TouchableOpacity>
       <View>
-        <Text>Simple List</Text>
+        <Text>Price List</Text>
       </View>
       <View style={style.formContainer}>
         <AnimateInput
@@ -75,4 +75,4 @@ const CreateListModal: React.FC = ({handlePress}) => {
   );
 };
 
-export {CreateListModal};
+export {PriceListModal};

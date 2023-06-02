@@ -4,7 +4,12 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {COLOR} from '../../config/constants/style-constants.ts';
-import {HomeScreen, CurrentList, ChooseListType} from '@screens';
+import {
+  HomeScreen,
+  CurrentList,
+  ChooseListType,
+  PriceListScreen,
+} from '@screens';
 
 type RootStackParamList = {
   StartScreen: undefined;
@@ -43,6 +48,7 @@ const Navigation: React.FC<RootStackParamList> = () => {
       <Stack.Group screenOptions={{headerShown: false}}>
         <Stack.Screen name="Tab" component={TabNavigation} />
         <Stack.Screen name="Home Screen" component={HomeScreen} />
+        <Stack.Screen name="Price List Screen" component={PriceListScreen} />
         <Stack.Screen name="Current Screen" component={CurrentList} />
         <Stack.Screen name="New List" component={ChooseListType} />
       </Stack.Group>

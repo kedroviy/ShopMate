@@ -1,21 +1,21 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, {useState, useEffect} from 'react';
-import {Text, View, TouchableOpacity, FlatList} from 'react-native';
+import {Text, View, TouchableOpacity, FlatList, TextInput} from 'react-native';
 import {useSelector} from 'react-redux';
 import {openDatabase} from 'react-native-sqlite-storage';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useNavigation} from '@react-navigation/native';
 
-import {AnimateInput, ListRow} from '@components';
+import {AnimateInput, ListRow, PriceInput} from '@components';
 
-import style from './currentList.style.ts';
+import style from './priceListScreen.style.ts';
 
 const db = openDatabase({
   name: 'shop_mate_db',
 });
 
-const CurrentList: React.FC = () => {
+const PriceListScreen: React.FC = () => {
   const list = useSelector((state: IRootState) => state.listReducer);
   const navigation: NavigationFunc = useNavigation();
   const [listHeaderTitle, setListHeaderTitle] = useState<Array>([]);
@@ -32,7 +32,7 @@ const CurrentList: React.FC = () => {
   const setItemsInDB: React.FC = item => {
     db.transaction(txn => {
       txn.executeSql(
-        `INSERT INTO simple_list (name, list_id) VALUES("${item}", "${listHeaderTitle.id}")`,
+        `INSERT INTO price_list (name, list_id) VALUES("${item}", "${listHeaderTitle.id}")`,
         [],
         (sqlTxn, res) => {
           console.log('list added successfully');
@@ -48,7 +48,7 @@ const CurrentList: React.FC = () => {
   const getLists: React.FC = () => {
     db.transaction(txn => {
       txn.executeSql(
-        `SELECT * FROM simple_list WHERE list_id = ${listHeaderTitle.id}`,
+        `SELECT * FROM price_list WHERE list_id = ${listHeaderTitle.id}`,
         [],
         (sqlTxn, res) => {
           console.log('lists retrieved successfully');
@@ -78,7 +78,7 @@ const CurrentList: React.FC = () => {
   const onDeleteListItemFromStore = item => {
     setListsFromDB(listsFromDB.filter(itemDB => itemDB.id !== item));
     db.transaction(txn => {
-      txn.executeSql(`DELETE FROM simple_list WHERE id=${item}`, []);
+      txn.executeSql(`DELETE FROM price_list WHERE id=${item}`, []);
     });
     console.log(listsFromDB);
   };
@@ -110,14 +110,17 @@ const CurrentList: React.FC = () => {
             value={listItemInput}
             onChangeText={setListItemInput}
           />
-          <TouchableOpacity
-            style={style.addButton}
-            onPress={() =>
-              listItemInput.length ? setInList(listItemInput) : null
-            }>
-            <Text style={style.addButtonText}>add</Text>
-          </TouchableOpacity>
+          <View>
+            <PriceInput />
+          </View>
         </View>
+        <TouchableOpacity
+          style={style.addButton}
+          onPress={() =>
+            listItemInput.length ? setInList(listItemInput) : null
+          }>
+          <Text style={style.addButtonText}>add</Text>
+        </TouchableOpacity>
       </View>
       <View style={style.fakeShadowContainer}>
         <View style={style.fakeShadow} />
@@ -145,4 +148,4 @@ const CurrentList: React.FC = () => {
   );
 };
 
-export {CurrentList};
+export {PriceListScreen};
